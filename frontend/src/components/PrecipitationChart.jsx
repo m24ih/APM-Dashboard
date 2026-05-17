@@ -37,7 +37,8 @@ export default function PrecipitationChart() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    const eventSource = new EventSource("http://localhost:8000/api/stream");
+    const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8000";
+    const eventSource = new EventSource(`${API_URL}/api/stream`);
 
     eventSource.onmessage = (event) => {
       const d = JSON.parse(event.data);
