@@ -1,3 +1,19 @@
-precipitation-frontend/node_modules 
-precipitation-frontend/node_modules/ 
-backend/data/dataset.csv 
+# Logs
+logs
+*.log
+
+# Dependency directories
+node_modules/
+frontend/node_modules/
+
+# Production build
+dist/
+frontend/dist/
+
+# Environment variables
+.env
+.env.local
+
+# OS generated files
+.DS_Store
+Thumbs.db
