@@ -1,0 +1,19 @@
+# Logs
+logs
+*.log
+
+# Dependency directories
+node_modules/
+frontend/node_modules/
+
+# Production build
+dist/
+frontend/dist/
+
+# Environment variables
+.env
+.env.local
+
+# OS generated files
+.DS_Store
+Thumbs.db
