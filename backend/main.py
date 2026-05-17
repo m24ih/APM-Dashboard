@@ -26,7 +26,7 @@ async def load_data():
     global static_data, dynamic_data
 
     if not os.path.exists(DATA_FILE):
-        print(f"CRITICAL: {DATA_FILE} bulunamadı. Veri yayını başlatılamaz.")
+        print(f"CRITICAL: {DATA_FILE} not found. Data streaming cannot be started.")
         return
 
     with open(DATA_FILE, mode="r", encoding="utf-8") as file:
@@ -34,7 +34,7 @@ async def load_data():
         rows = list(reader)
 
         if not rows:
-            print("CRITICAL: CSV dosyası boş.")
+            print("CRITICAL: CSV file is empty.")
             return
 
         first_row = rows[0]
@@ -76,7 +76,7 @@ async def get_static_data():
 
 async def data_generator():
     if not dynamic_data:
-        yield f"data: {json.dumps({'error': 'Bellekte veri bulunamadi'})}\n\n"
+        yield f"data: {json.dumps({'error': 'Data not found in memory'})}\n\n"
         return
 
     index = 0
@@ -90,7 +90,7 @@ async def data_generator():
         if index >= total_records:
             index = 0
 
-        # Saniyede 1 kez yayın yapar. Döngü hızı buradan kontrol edilir.
+        # Streams 1 time per second. Loop speed is controlled here.
         await asyncio.sleep(1)
 
 

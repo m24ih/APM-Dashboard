@@ -23,7 +23,7 @@ const CustomTooltip = ({ active, payload, label }) => {
         {payload.map((p, i) => (
           <p key={i} style={{ color: p.color, margin: "2px 0" }}>
             {p.name}: {p.value === -1
-              ? <span style={{ color: "#f59e0b" }}>iz miktarı (trace)</span>
+              ? <span style={{ color: "#f59e0b" }}>trace amount</span>
               : `${p.value} mm`}
           </p>
         ))}
@@ -65,16 +65,16 @@ export default function PrecipitationChart() {
   return (
     <div style={{ display: "grid", gap: 24 }}>
 
-      {/* YAGIS GRAFİGİ */}
+      {/* PRECIPITATION CHART */}
       <div style={{ background: "#1e293b", padding: 24, borderRadius: 12 }}>
         <h2 style={{ color: "#e2e8f0", marginBottom: 8 }}>
-          🌧️ Yağış Miktarı (Gerçek Zamanlı)
+          🌧️ Precipitation Amount (Real-Time)
         </h2>
         <p style={{ color: "#94a3b8", fontSize: 12, marginBottom: 16 }}>
-          <span style={{ color: "#f59e0b" }}>●</span> Sarı işaretler iz miktarını (trace, -1) temsil eder
+          <span style={{ color: "#f59e0b" }}>●</span> Yellow dots represent trace amount (-1)
         </p>
         {data.length === 0 ? (
-          <p style={{ color: "#94a3b8", textAlign: "center", padding: 40 }}>⏳ Veri bekleniyor...</p>
+          <p style={{ color: "#94a3b8", textAlign: "center", padding: 40 }}>⏳ Waiting for data...</p>
         ) : (
           <ResponsiveContainer width="100%" height={350}>
             <ComposedChart data={data}>
@@ -88,22 +88,22 @@ export default function PrecipitationChart() {
               <ReferenceLine y={0} stroke="#475569" strokeDasharray="3 3" />
               <Line type="monotone" dataKey="precip1HR_display" stroke="#38bdf8"
                 dot={<CustomDot dataKey="precip1HR" />}
-                name="1 Saatlik Yağış (mm)" strokeWidth={2} />
+                name="1 Hour Precipitation (mm)" strokeWidth={2} />
               <Line type="monotone" dataKey="precip6HR_display" stroke="#a78bfa"
                 dot={<CustomDot dataKey="precip6HR" />}
-                name="6 Saatlik Yağış (mm)" strokeWidth={2} />
+                name="6 Hour Precipitation (mm)" strokeWidth={2} />
             </ComposedChart>
           </ResponsiveContainer>
         )}
       </div>
 
-      {/* BULUTLULUK GRAFİGİ */}
+      {/* CLOUD COVERAGE CHART */}
       <div style={{ background: "#1e293b", padding: 24, borderRadius: 12 }}>
         <h2 style={{ color: "#e2e8f0", marginBottom: 16 }}>
-          ☁️ Bulut Örtüsü (Gerçek Zamanlı)
+          ☁️ Cloud Coverage (Real-Time)
         </h2>
         {data.length === 0 ? (
-          <p style={{ color: "#94a3b8", textAlign: "center", padding: 40 }}>⏳ Veri bekleniyor...</p>
+          <p style={{ color: "#94a3b8", textAlign: "center", padding: 40 }}>⏳ Waiting for data...</p>
         ) : (
           <ResponsiveContainer width="100%" height={300}>
             <ComposedChart data={data}>
@@ -115,7 +115,7 @@ export default function PrecipitationChart() {
               <Tooltip contentStyle={{ background: "#0f172a", border: "1px solid #334155", color: "#e2e8f0" }} />
               <Legend wrapperStyle={{ color: "#e2e8f0" }} />
               <Line type="monotone" dataKey="cloudCoverage" stroke="#4ade80"
-                dot={false} name="Bulut Örtüsü (okta)" strokeWidth={2} />
+                dot={false} name="Cloud Coverage (okta)" strokeWidth={2} />
             </ComposedChart>
           </ResponsiveContainer>
         )}

@@ -15,14 +15,14 @@ import {
 } from "recharts";
 
 const DIRECTIONS = [
-  "K (0)",
-  "KD (45)",
-  "D (90)",
-  "GD (135)",
-  "G (180)",
-  "GB (225)",
-  "B (270)",
-  "KB (315)",
+  "N (0)",
+  "NE (45)",
+  "E (90)",
+  "SE (135)",
+  "S (180)",
+  "SW (225)",
+  "W (270)",
+  "NW (315)",
 ];
 
 function degToDir(deg) {
@@ -83,11 +83,11 @@ export default function AtmosphereChart() {
     <div style={{ display: "grid", gap: 24 }}>
       <div style={{ background: "#1e293b", padding: 24, borderRadius: 12 }}>
         <h2 style={{ color: "#e2e8f0", marginBottom: 16 }}>
-          Atmosferik Basin ve Ruzgar Hizi (Gercek Zamanli)
+          🌬️ Atmospheric Pressure and Wind Speed (Real-Time)
         </h2>
         {timeData.length === 0 ? (
           <p style={{ color: "#94a3b8", textAlign: "center", padding: 40 }}>
-            Veri bekleniyor...
+            Waiting for data...
           </p>
         ) : (
           <ResponsiveContainer width="100%" height={350}>
@@ -135,7 +135,7 @@ export default function AtmosphereChart() {
                 dataKey="pressure"
                 stroke="#38bdf8"
                 dot={false}
-                name="Deniz Seviyesi Basinci (hPa)"
+                name="Sea Level Pressure (hPa)"
               />
               <Line
                 yAxisId="right"
@@ -143,7 +143,7 @@ export default function AtmosphereChart() {
                 dataKey="windSpeed"
                 stroke="#4ade80"
                 dot={false}
-                name="Ruzgar Hizi (m/s)"
+                name="Wind Speed (m/s)"
               />
             </ComposedChart>
           </ResponsiveContainer>
@@ -152,23 +152,23 @@ export default function AtmosphereChart() {
 
       <div style={{ background: "#1e293b", padding: 24, borderRadius: 12 }}>
         <h2 style={{ color: "#e2e8f0", marginBottom: 8 }}>
-          Ruzgar Gulu - Yon Bazli Ortalama Hiz
+          🧭 Wind Rose - Average Speed by Direction
         </h2>
         {latest && (
           <p style={{ color: "#94a3b8", fontSize: 13, marginBottom: 16 }}>
-            Son kayit:{" "}
+            Latest record:{" "}
             <strong style={{ color: "#fbbf24" }}>{latest.timestamp}</strong> |
-            Yon:{" "}
+            Direction:{" "}
             <strong style={{ color: "#f472b6" }}>
-              {latest.windDirection} derece
+              {latest.windDirection} degrees
             </strong>{" "}
-            | Hiz:{" "}
+            | Speed:{" "}
             <strong style={{ color: "#4ade80" }}>{latest.windSpeed} m/s</strong>
           </p>
         )}
         {roseData.length === 0 ? (
           <p style={{ color: "#94a3b8", textAlign: "center", padding: 40 }}>
-            Veri bekleniyor...
+            Waiting for data...
           </p>
         ) : (
           <ResponsiveContainer width="100%" height={350}>
@@ -179,7 +179,7 @@ export default function AtmosphereChart() {
                 tick={{ fill: "#cbd5e1", fontSize: 12 }}
               />
               <Radar
-                name="Ort. Ruzgar Hizi (m/s)"
+                name="Avg. Wind Speed (m/s)"
                 dataKey="avgSpeed"
                 stroke="#f472b6"
                 fill="#f472b6"
