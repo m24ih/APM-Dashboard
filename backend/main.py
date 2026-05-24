@@ -96,4 +96,12 @@ async def data_generator():
 
 @app.get("/api/stream")
 async def stream_data():
-    return StreamingResponse(data_generator(), media_type="text/event-stream")
+    return StreamingResponse(
+        data_generator(),
+        media_type="text/event-stream",
+        headers={
+            "Cache-Control": "no-cache",
+            "Connection": "keep-alive",
+            "X-Accel-Buffering": "no"
+        }
+    )
