@@ -46,7 +46,8 @@ export default function ThermalChart({ data }) {
             
             {/* DIŞ HAVA SICAKLIĞI ÇİZGİSİ (Sıcak/Turuncu Ton) */}
             <Line 
-              type="monotone" 
+              type="linear" 
+              isAnimationActive={false}
               dataKey="airTemperature" 
               name="Air Temp (°C)" 
               stroke="#f97316" 
@@ -57,7 +58,8 @@ export default function ThermalChart({ data }) {
             
             {/* ÇİY NOKTASI ÇİZGİSİ (Soğuk/Mavi Ton) */}
             <Line 
-              type="monotone" 
+              type="linear" 
+              isAnimationActive={false}
               dataKey="dewTemperature" 
               name="Dew Point (°C)" 
               stroke="#38bdf8" 

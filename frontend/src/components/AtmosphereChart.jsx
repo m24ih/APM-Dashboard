@@ -40,7 +40,7 @@ export default function AtmosphereChart({ data, latest }) {
   return (
     <div className="flex flex-col gap-6">
       <div className="bg-[#161c2d] p-6 rounded-xl border border-slate-800">
-        <h2 className="text-sm font-bold uppercase tracking-wider text-slate-400 mb-4">🌬️ Atmospheric Pressure and Wind Speed</h2>
+        <h2 className="text-sm font-bold uppercase tracking-wider text-slate-400 mb-4">Atmospheric Pressure and Wind Speed</h2>
         {timeData.length === 0 ? (
           <p className="text-slate-400 text-center p-10 animate-pulse">Waiting for data...</p>
         ) : (
@@ -52,15 +52,15 @@ export default function AtmosphereChart({ data, latest }) {
               <YAxis yAxisId="right" orientation="right" tick={{ fill: "#4ade80" }} label={{ value: "m/s", angle: 90, position: "insideRight", fill: "#4ade80" }} />
               <Tooltip contentStyle={{ background: "#1e293b", border: "none", borderRadius: "8px", color: "#e2e8f0" }} />
               <Legend wrapperStyle={{ color: "#e2e8f0" }} />
-              <Line yAxisId="left" type="monotone" dataKey="pressure" stroke="#38bdf8" dot={false} name="Sea Level Pressure (hPa)" />
-              <Line yAxisId="right" type="monotone" dataKey="windSpeed" stroke="#4ade80" dot={false} name="Wind Speed (m/s)" />
+              <Line yAxisId="left" type="linear" isAnimationActive={false} dataKey="pressure" stroke="#38bdf8" dot={false} name="Sea Level Pressure (hPa)" />
+              <Line yAxisId="right" type="linear" isAnimationActive={false} dataKey="windSpeed" stroke="#4ade80" dot={false} name="Wind Speed (m/s)" />
             </ComposedChart>
           </ResponsiveContainer>
         )}
       </div>
 
       <div className="bg-[#161c2d] p-6 rounded-xl border border-slate-800">
-        <h2 className="text-sm font-bold uppercase tracking-wider text-slate-400 mb-2">🧭 Wind Rose - Average Speed</h2>
+        <h2 className="text-sm font-bold uppercase tracking-wider text-slate-400 mb-2">Wind Rose - Average Speed</h2>
         {latest && (
           <p className="text-xs text-slate-400 mb-4">
             Direction: <strong className="text-pink-400">{latest.windDirection}°</strong> | Speed: <strong className="text-emerald-400">{latest.windSpeed} m/s</strong>

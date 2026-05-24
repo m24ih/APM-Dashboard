@@ -133,7 +133,7 @@ export default function App() {
               <XAxis dataKey="timestamp" stroke="#94a3b8" fontSize={9} tickFormatter={(t) => t ? t.split(' ')[1] : ''} />
               <YAxis stroke="#94a3b8" fontSize={10} />
               <Tooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '8px' }} />
-              <Area type="monotone" dataKey="carbon_emission_kg" stroke="#818cf8" fillOpacity={1} fill="url(#colorEmission)" name="CO₂ (kg)" />
+              <Area type="linear" isAnimationActive={false} dataKey="carbon_emission_kg" stroke="#818cf8" fillOpacity={1} fill="url(#colorEmission)" name="CO₂ (kg)" />
             </AreaChart>
           </ResponsiveContainer>
         </div>

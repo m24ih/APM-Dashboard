@@ -38,7 +38,7 @@ export default function PrecipitationChart({ data }) {
   return (
     <div className="flex flex-col gap-6">
       <div className="bg-[#161c2d] p-6 rounded-xl border border-slate-800">
-        <h2 className="text-sm font-bold uppercase tracking-wider text-slate-400 mb-2">🌧️ Precipitation Amount</h2>
+        <h2 className="text-sm font-bold uppercase tracking-wider text-slate-400 mb-2">Precipitation Amount</h2>
         <p className="text-xs text-slate-500 mb-4"><span className="text-amber-500">●</span> Yellow dots = trace amount</p>
         {processedData.length === 0 ? (
           <p className="text-slate-400 text-center p-10 animate-pulse">Waiting for data...</p>
@@ -51,15 +51,15 @@ export default function PrecipitationChart({ data }) {
               <Tooltip content={<CustomTooltip />} />
               <Legend wrapperStyle={{ color: "#e2e8f0" }} />
               <ReferenceLine y={0} stroke="#475569" strokeDasharray="3 3" />
-              <Line type="monotone" dataKey="precip1HR_display" stroke="#38bdf8" dot={<CustomDot dataKey="precip1HR" />} name="1 Hour (mm)" strokeWidth={2} />
-              <Line type="monotone" dataKey="precip6HR_display" stroke="#a78bfa" dot={<CustomDot dataKey="precip6HR" />} name="6 Hour (mm)" strokeWidth={2} />
+              <Line type="linear" isAnimationActive={false} dataKey="precip1HR_display" stroke="#38bdf8" dot={<CustomDot dataKey="precip1HR" />} name="1 Hour (mm)" strokeWidth={2} />
+              <Line type="linear" isAnimationActive={false} dataKey="precip6HR_display" stroke="#a78bfa" dot={<CustomDot dataKey="precip6HR" />} name="6 Hour (mm)" strokeWidth={2} />
             </ComposedChart>
           </ResponsiveContainer>
         )}
       </div>
 
       <div className="bg-[#161c2d] p-6 rounded-xl border border-slate-800">
-        <h2 className="text-sm font-bold uppercase tracking-wider text-slate-400 mb-4">☁️ Cloud Coverage</h2>
+        <h2 className="text-sm font-bold uppercase tracking-wider text-slate-400 mb-4">Cloud Coverage</h2>
         {processedData.length === 0 ? (
           <p className="text-slate-400 text-center p-10 animate-pulse">Waiting for data...</p>
         ) : (
@@ -70,7 +70,7 @@ export default function PrecipitationChart({ data }) {
               <YAxis domain={[0, 9]} tick={{ fill: "#94a3b8" }} label={{ value: "okta", angle: -90, position: "insideLeft", fill: "#94a3b8" }} />
               <Tooltip contentStyle={{ background: "#1e293b", border: "none", borderRadius: "8px", color: "#e2e8f0" }} />
               <Legend wrapperStyle={{ color: "#e2e8f0" }} />
-              <Line type="monotone" dataKey="cloudCoverage" stroke="#4ade80" dot={false} name="Coverage (okta)" strokeWidth={2} />
+              <Line type="linear" isAnimationActive={false} dataKey="cloudCoverage" stroke="#4ade80" dot={false} name="Coverage (okta)" strokeWidth={2} />
             </ComposedChart>
           </ResponsiveContainer>
         )}
