@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: apm_backend
+    restart: always
+    expose:
+      - "8000"
+    volumes:
+      - ./backend/data:/app/data
+    networks:
+      - apm_network
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: apm_frontend
+    restart: always
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - apm_network
+
+networks:
+  apm_network:
+    driver: bridge

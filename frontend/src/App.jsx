@@ -12,14 +12,14 @@ export default function App() {
   const [latestMetrics, setLatestMetrics] = useState(null);
 
   useEffect(() => {
-    fetch('http://localhost:8000/api/static')
+    fetch('/api/static')
       .then(res => res.json())
       .then(data => setBuildingInfo(data))
       .catch(err => console.error("Error loading static metadata:", err));
   }, []);
 
   useEffect(() => {
-    const eventSource = new EventSource('http://localhost:8000/api/stream');
+    const eventSource = new EventSource('/api/stream');
 
     eventSource.onmessage = (event) => {
       try {
