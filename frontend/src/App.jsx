@@ -24,7 +24,11 @@ export default function App() {
     eventSource.onmessage = (event) => {
       try {
         const parsedRecord = JSON.parse(event.data);
-        if (parsedRecord.error) return;
+        if (parsedRecord.error) {
+            console.error("Backend Veri Hatası:", parsedRecord.error);
+            setBuildingInfo({ primaryspaceusage: "ERROR: Data Source Missing" });
+            return;
+        }
 
         setLatestMetrics(parsedRecord);
 
